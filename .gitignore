@@ -1,0 +1,15 @@
+.env
+.env.local
+.env.*.local
+alex-instructions.txt
+node_modules/
+*/node_modules/
+dist/
+build/
+tickets.json
+backend/tickets.json
+*.log
+.DS_Store
+.vscode/
+.idea/
+ngrok.exe
