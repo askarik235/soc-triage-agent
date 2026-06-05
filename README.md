@@ -7,6 +7,40 @@ When something goes wrong - ransomware, a phishing wave, a stolen login - the fi
 Built on the Napster Omniagent API for the Omniagent Hackathon.
 
 ---
+## Quick Start
+
+Watch the demo video first (link in the submission) to see the full flow in action.
+
+To run it locally you need Node 18+, a Napster Omniagent API key, and ngrok.
+
+```bash
+# 1. Install dependencies
+cd frontend && npm install && cd ..
+npm install dotenv
+
+# 2. Add your config (copy the examples and fill in your values)
+cp .env.example .env                 # then edit .env
+cp frontend/.env.example frontend/.env   # then edit frontend/.env
+#    NAPSTER_API_KEY -> your key
+#    CLIENT_KEY and VITE_CLIENT_KEY -> the same random string in both files
+
+# 3. Create the Napster agent + tools + knowledge base (run once)
+node scripts/setup-agent.js
+#    copy the printed AGENT_ID into .env
+
+# 4. Start all three pieces (three terminals)
+ngrok http 3001                  # terminal 1 - public tunnel for tool callbacks
+node backend/server.js           # terminal 2 - backend
+cd frontend && npm run dev       # terminal 3 - frontend
+```
+
+Then open the localhost URL Vite prints (usually http://localhost:5173) and click **Connect**.
+
+> Note: the tool endpoints are called by Napster's cloud, so the backend must be
+> reachable via ngrok. Point the tool URLs at your ngrok domain (see scripts/setup-agent.js).
+
+---
+
 
 ## What it does
 
